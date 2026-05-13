@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>fruits store</title>
+  </head>
+  <body>
+    <h1>DOjo fruit store!</h1>
+    <form action="/checkout" method="post">
+      <h2>What would you like to buy?</h2>
+      <table>
+        <tr>
+          <th>Fruit Name</th>
+          <th>Quantity</th>
+        </tr>
+        <tr>
+          <td>strawberry</td>
+          <td>
+            <select name="strawberry">
+              <option >0</option>
+              <option>1</option>
+              <option>2</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Raspberry</td>
+          <td>
+            <select name="raspberry">
+              <option>0</option>
+              <option>1</option>
+              <option>2</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Apple</td>
+          <td>
+            <select name="apple">
+              <option>0</option>
+              <option>1</option>
+              <option>2</option>
+            </select>
+          </td>
+        </tr>
+      </table>
+      <h2>Your Information</h2>
+      <div>
+        <label>Name</label>
+        <input type="text" name="name" />
+      </div>
+      <div>
+        <label>YourStudent ID</label>
+        <input type="text" name="id"/>
+      </div>
+      <button type="submit" >Buy my stuff</button>
+    </form>
+  </body>
+</html>
