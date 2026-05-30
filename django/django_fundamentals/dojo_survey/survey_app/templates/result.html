@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dojo Survey</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="flex justify-center items-center h-screen">
+    <div class="border-2 border-black p-6 w-96 min-h-[400px] flex flex-col">
+      <h1 class="underline text-lg font-bold">Submitted Info</h1>
+      <div class="flex items-center mb-3">
+        <p class="w-40">Name:</p>
+        <span class="ml-2">{{ name }}</span>
+      </div>
+      <div class="flex items-center mb-3">
+        <p class="w-40">Dojo Location:</p>
+        <span class="ml-2">{{ location }}</span>
+      </div>
+      <div class="flex items-center mb-3">
+        <p class="w-40">Favorite Language:</p>
+        <span class="ml-2">{{ favorite_language }}</span>
+      </div>
+      <div class="flex items-center mb-3">
+        <p class="w-40">Comment:</p>
+        <span class="ml-2">{{ comment }}</span>
+      </div>
+      <div class="flex justify-end mt-auto">
+        <button
+          class="bg-blue-400 text-white py-2 px-4 border-2 border-black shadow-[4px_4px_0px_black] hover:bg-blue-500"
+        >
+          <a href="/">Go Back</a>
+        </button>
+      </div>
+    </div>
+  </body>
+</html>
