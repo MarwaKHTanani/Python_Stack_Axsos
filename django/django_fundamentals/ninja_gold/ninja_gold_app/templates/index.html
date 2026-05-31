@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ninja gold</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="p-8">
+    <div class="flex items-center gap-4 mb-8">
+      <label class="text-xl font-bold">Your Gold:</label>
+      <input
+        type="text"
+        value="{{gold}}"
+        readonly
+        class="w-20 p-2 text-center border-2 border-black text-lg"
+      />
+    </div>
+
+    <div class="flex gap-6 mb-8 max-w-4xl">
+      <form
+        action="/process_money"
+        method="post"
+        class="flex-1 border-2 border-black p-6 flex flex-col items-center justify-between min-h-[180px]"
+      >
+        {% csrf_token %}
+        <input type="hidden" name="building" value="farm" />
+        <h2 class="text-xl font-bold mb-2">Farm</h2>
+        <p class="text-sm mb-4">(earns 10-20 gold)</p>
+        <input
+          type="submit"
+          value="Find Gold!"
+          class="border border-black px-4 py-1 text-sm bg-white cursor-pointer hover:bg-gray-100 font-medium"
+        />
+      </form>
+
+      <form
+        action="/process_money"
+        method="post"
+        class="flex-1 border-2 border-black p-6 flex flex-col items-center justify-between min-h-[180px]"
+      >
+        {% csrf_token %}
+        <input type="hidden" name="building" value="cave" />
+        <h2 class="text-xl font-bold mb-2">Cave</h2>
+        <p class="text-sm mb-4">(earns 10-20 gold)</p>
+        <input
+          type="submit"
+          value="Find Gold!"
+          class="border border-black px-4 py-1 text-sm bg-white cursor-pointer hover:bg-gray-100 font-medium"
+        />
+      </form>
+
+      <form
+        action="/process_money"
+        method="post"
+        class="flex-1 border-2 border-black p-6 flex flex-col items-center justify-between min-h-[180px]"
+      >
+        {% csrf_token %}
+        <input type="hidden" name="building" value="house" />
+        <h2 class="text-xl font-bold mb-2">House</h2>
+        <p class="text-sm mb-4">(earns 10-20 gold)</p>
+        <input
+          type="submit"
+          value="Find Gold!"
+          class="border border-black px-4 py-1 text-sm bg-white cursor-pointer hover:bg-gray-100 font-medium"
+        />
+      </form>
+
+      <form
+        action="/process_money"
+        method="post"
+        class="flex-1 border-2 border-black p-6 flex flex-col items-center justify-between min-h-[180px]"
+      >
+        {% csrf_token %}
+        <input type="hidden" name="building" value="quest" />
+        <h2 class="text-xl font-bold mb-2">Quest</h2>
+        <p class="text-center text-sm mb-4">
+          (earns/takes<br />0 - 50 gold)
+        </p>
+        <input
+          type="submit"
+          value="Find Gold!"
+          class="border border-black px-4 py-1 text-sm bg-white cursor-pointer hover:bg-gray-100 font-medium"
+        />
+      </form>
+    </div>
+
+    <div class="max-w-4xl">
+      <h1 class="text-xl font-bold mb-2">Activities:</h1>
+      <div
+        class="w-full h-48 border-2 border-black p-4 overflow-y-auto text-sm space-y-1 bg-white"
+      >
+        {% for activity in activities %}
+        {% if "lost" in activity or "failed" in activity %}
+        <p class="text-red-600">{{ activity }}</p>
+        {% else %}
+        <p class="text-green-600">{{ activity }}</p>
+        {% endif %} {% empty %}
+        <p class="text-gray-400 italic">No activities yet...</p>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>
