@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shows</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="p-20">
+    <h1 class="text-3xl mb-8">All Shows</h1>
+    <table class="border border-black border-collapse mb-8">
+      <tr class="divide-x divide-black bg-gray-200">
+        <th class="p-2 border-b border-black">ID</th>
+        <th class="p-2 border-b border-black">Title</th>
+        <th class="p-2 border-b border-black">Network</th>
+        <th class="p-2 border-b border-black">Release Date</th>
+        <th class="p-2 border-b border-black">Action</th>
+      </tr>
+      {%for show in all_shows%}
+      <tr class="divide-x divide-black">
+        <td class="p-2 border-b border-black">{{show.id}}</td>
+        <td class="p-2 border-b border-black">{{show.title}}</td>
+        <td class="p-2 border-b border-black">{{show.network}}</td>
+        <td class="p-2 border-b border-black">{{show.related_date}}</td>
+        <td class="p-2 border-b border-black flex gap-2">
+          <a href="/shows/{{show.id}}" class="underline text-blue-500">View</a>
+          <a href="/shows/{{show.id}}/edit" class="underline text-blue-500"
+            >edit</a
+          >
+          <form action="/shows/{{show.id}}/destroy" method="post">
+            {%csrf_token%}
+            <button type="submit" class="underline text-blue-500 cursor-pointer">delete</button>
+          </form>
+        </td>
+      </tr>
+      {%endfor%}
+    </table>
+
+    <a href="/shows/new" class="underline text-blue-500">Add a New Show</a>
+  </body>
+</html>

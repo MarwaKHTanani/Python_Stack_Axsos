@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shows details</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="p-10 flex flex-col gap-10">
+      <a
+        href="/shows"
+        class="absolute top-10 right-10 -translate-y-1/2 underline text-blue-500"
+        >Go back</a
+      >
+      <h1 class="text-3xl">TV Show {{show.id}}</h1>
+      <div>
+        <p>Title: {{show.title}}</p>
+        <p>Network: {{show.network}}</p>
+        <p>Release date: {{show.related_date}}</p>
+        <p>Description: {{show.description}}</p>
+      </div>
+      <p>Last updated: {{show.updated_at}}</p>
+      <div class="flex gap-2">
+        <a
+          href="/shows/{{show.id}}/edit"
+          class="underline text-blue-500 border-r border-black pr-2"
+          >Edit</a
+        >
+        <form action="/shows/{{show.id}}/destroy" method="post">
+          {%csrf_token%}
+          <button type="submit" class="underline text-blue-500 cursor-pointer">
+            delete
+          </button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

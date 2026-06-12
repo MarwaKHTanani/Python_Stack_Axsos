@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>edit Shows</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div
+      class="flex flex-col justify-center items-center max-w-2xl mx-auto p-20"
+    >
+      <a
+        href="/shows"
+        class="absolute right-5 top-20 -translate-y-1/2 underline text-blue-500 cursor-pointer"
+        >Go back</a
+      >
+
+      <h1 class="text-3xl">Edit Show {{show.id}}</h1>
+      <form action="/shows/{{show.id}}/update" method="post" class="w-full">
+        {%csrf_token%}
+        <div class="flex flex-col w-full mb-3">
+          <label for="title" class="whitespace-nowrap">Title</label>
+          <input
+            type="text"
+            name="title"
+            class="border border-black"
+            value="{{show.title}}"
+          />
+        </div>
+        <div class="flex justify-between gap-4 mb-3">
+          <div class="flex flex-col w-full">
+            <label for="network">Network</label>
+            <input
+              type="text"
+              name="network"
+              class="border border-black w-full"
+              value="{{show.network}}"
+            />
+          </div>
+          <div class="flex flex-col w-full">
+            <label for="related_date">Release Date</label>
+            <input
+              type="date"
+              name="related_date"
+              class="border border-black"
+              value="{{show.related_date|date:'Y-m-d'}}"
+            />
+          </div>
+        </div>
+        <div class="flex flex-col mb-3">
+          <label for="description">Description</label>
+          <textarea
+            name="description"
+            id="description"
+            class="border border-black"
+          >
+ {{show.description}}</textarea
+          >
+        </div>
+        <div class="text-center">
+          <button
+            type="submit"
+            class="border border-black px-4 py-2 shadow-[4px_4px_0px_black]"
+          >
+            Update
+          </button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
