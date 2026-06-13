@@ -19,7 +19,7 @@ class ShowManager(models.Manager):
         if show_id:
             existing_show=existing_show.exclude(id=show_id)
         if existing_show.exists():
-            errors['title_unique']='title already exists'
+            errors['title']='title already exists'
 
         if len(network) < 3:
             errors["network"] = "network should be at least 3 character"

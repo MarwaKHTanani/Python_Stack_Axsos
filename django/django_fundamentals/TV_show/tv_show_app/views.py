@@ -26,10 +26,10 @@ def create_show(request):
         return redirect("/shows/new")
 
     show = Show.objects.create(
-        title=request.POST["title"],
-        network=request.POST["network"],
+        title=request.POST["title"].strip(),
+        network=request.POST["network"].strip(),
         related_date=request.POST["related_date"],
-        description=request.POST["description"],
+        description=request.POST["description"].strip(),
     )
 
     return redirect(f"/shows/{show.id}")
@@ -61,10 +61,10 @@ def update_show(request, show_id):
     
     show = Show.objects.get(id=show_id)
 
-    show.title = request.POST["title"]
-    show.network = request.POST["network"]
+    show.title = request.POST["title"].strip()
+    show.network = request.POST["network"].strip()
     show.related_date = request.POST["related_date"]
-    show.description = request.POST["description"]
+    show.description = request.POST["description"].strip()
 
     show.save()
     return redirect(f"/shows/{show.id}")
