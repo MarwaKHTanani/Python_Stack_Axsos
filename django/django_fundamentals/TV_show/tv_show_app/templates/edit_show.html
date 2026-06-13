@@ -17,6 +17,13 @@
       >
 
       <h1 class="text-3xl">Edit Show {{show.id}}</h1>
+      {%if messages %}
+      <ul>
+      {%for message in messages%}
+      <li class="text-red-500">{{message}}</li>
+      {%endfor%}
+      </ul>
+      {%endif%}
       <form action="/shows/{{show.id}}/update" method="post" class="w-full">
         {%csrf_token%}
         <div class="flex flex-col w-full mb-3">

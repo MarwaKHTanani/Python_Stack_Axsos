@@ -10,9 +10,20 @@
     <div
       class="flex flex-col justify-center items-center max-w-2xl mx-auto p-20"
     >
-      <a href="/shows" class="absolute right-5 top-20 -translate-y-1/2 underline text-blue-500 cursor-pointer">Go back</a>
+      <a
+        href="/shows"
+        class="absolute right-5 top-20 -translate-y-1/2 underline text-blue-500 cursor-pointer"
+        >Go back</a
+      >
 
       <h1 class="text-3xl">Add a new Show</h1>
+      {%if messages %}
+      <ul>
+        {%for message in messages%}
+        <li class="text-red-500">{{message}}</li>
+        {%endfor%}
+      </ul>
+      {%endif%}
       <form action="/shows/create" method="post" class="w-full">
         {%csrf_token%}
         <div class="flex flex-col w-full mb-3">
@@ -30,7 +41,11 @@
           </div>
           <div class="flex flex-col w-full">
             <label for="related_date">Release Date</label>
-            <input type="date" name="related_date" class="border border-black" />
+            <input
+              type="date"
+              name="related_date"
+              class="border border-black"
+            />
           </div>
         </div>
         <div class="flex flex-col mb-3">
