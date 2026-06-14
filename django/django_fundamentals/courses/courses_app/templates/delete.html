@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>delete</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="p-10">
+    <h1 class="font-bold text-3xl mb-6">
+      Are you sure you want to delete the following course?
+    </h1>
+    <div class="flex gap-6 w-full">
+      <label class="whitespace-nowrap w-24">Name:</label>
+      <span class="w-full">{{course.name}}</span>
+    </div>
+    <div class="flex gap-6 w-full">
+      <label class="whitespace-nowrap w-24">Description:</label>
+      <span class="w-full">{{course.description}}</span>
+    </div>
+    <div class="mt-6 flex justify-center gap-6">
+      <button
+        class="border border-black text-black bg-gray-200 shadow-[4px_4px_0px_black] px-4 py-2"
+      >
+        <a href="/">NO</a>
+      </button>
+      <form action="/courses/destroy/{{course.id}}" method="post">
+        {%csrf_token%}
+        <button
+          class="border border-black text-black bg-red-600 shadow-[4px_4px_0px_black] px-6 py-2"
+          type="submit"
+        >
+          Yes! I want to delete this
+        </button>
+      </form>
+    </div>
+  </body>
+</html>
