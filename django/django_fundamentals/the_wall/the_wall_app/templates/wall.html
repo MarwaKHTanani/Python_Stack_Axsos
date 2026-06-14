@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>wall</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <nav
+      class="w-full px-10 py-4 flex justify-between border-b border-black mb-10"
+    >
+      <h1 class="font-bold text-lg">CodingDojo Wall</h1>
+      <ul class="flex gap-6">
+        <li>Welcome {{user.first_name}}</li>
+        <li>
+          <form action="logout" method="post">
+            {%csrf_token%}
+            <button type="submit" class="underline text-blue-400">
+              log off
+            </button>
+          </form>
+        </li>
+      </ul>
+    </nav>
+    <form action="message/create" method="post" class="px-24">
+      {%csrf_token%}
+      <h2 class="text-lg">Post a message</h2>
+      <textarea
+        name="message"
+        class="border border-black w-full h-40"
+      ></textarea>
+      <div class="text-end">
+        <button
+          type="submit"
+          class="border border-black text-white bg-blue-500 px-4 py-2 shadow-[4px_4px_0px_black]"
+        >
+          Post a message
+        </button>
+      </div>
+    </form>
+    <ul>
+      {%for message in messages%}
+      <li class="px-24">
+        <h6 class="font-bold text-lg">
+          {{message.user.first_name}} {{message.user.last_name}} -
+          {{message.created_at}}
+        </h6>
+        <p class="px-3">{{message.message}}</p>
+        <form action="message/delete/{{message.id}}" class="text-end">
+          {%csrf_token%}
+          <button
+            type="submit"
+            class="border border-black text-white bg-red-500 px-2 py-1 shadow-[4px_4px_0px_black]"
+          >
+            delete
+          </button>
+        </form>
+        <ul class="px-3">
+          {%for comment in message.comments.all%}
+          <li>
+            <p class="font-bold">
+              {{comment.user.first_name}} {{comment.user.last_name}} -
+              {{comment.user.created_at}}
+            </p>
+            {{comment.comment}}
+          </li>
+          {%endfor%}
+        </ul>
+        <form action="comment/create/{{message.id}}" method="post" class="px-3">
+          {%csrf_token%}
+          <h2 class="text-lg">Post a comment</h2>
+          <textarea
+            name="comment"
+            class="border border-black w-full"
+          ></textarea>
+          <div class="text-end">
+            <button
+              type="submit"
+              class="border border-black text-white bg-green-500 px-4 py-2 shadow-[4px_4px_0px_black]"
+            >
+              Post a comment
+            </button>
+          </div>
+        </form>
+      </li>
+
+      {%endfor%}
+    </ul>
+  </body>
+</html>

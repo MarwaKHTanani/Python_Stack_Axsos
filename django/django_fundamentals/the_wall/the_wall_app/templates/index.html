@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>register and login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="flex justify-around max-w-3xl mx-auto p-10">
+      <form action="register" method="post">
+        {%csrf_token%}
+
+        <h1 class="font-bold text-3xl text-center mb-6">Register</h1>
+        <div class="flex w-full gap-3 mb-4">
+          <label for="first_name" class="whitespace-no-wrap w-24"
+            >First name:</label
+          >
+          <input name="first_name" type="text" class="border border-black" />
+        </div>
+        <div class="flex w-full gap-3 mb-4">
+          <label for="last_name" class="whitespace-no-wrap w-24"
+            >Last name:</label
+          >
+          <input name="last_name" type="text" class="border border-black" />
+        </div>
+        <div class="flex w-full gap-3 mb-4">
+          <label for="email" class="whitespace-no-wrap w-24">Email:</label>
+          <input name="email" type="email" class="border border-black" />
+        </div>
+        <div class="flex w-full gap-3 mb-4">
+          <label for="password" class="whitespace-no-wrap w-24"
+            >Password:</label
+          >
+          <input name="password" type="password" class="border border-black" />
+        </div>
+        <div class="flex w-full gap-3 mb-4">
+          <label for="confirm_pw" class="whitespace-no-wrap w-24"
+            >Confirm Password:</label
+          >
+          <input
+            name="confirm_pw"
+            type="password"
+            class="border border-black"
+          />
+        </div>
+        <div class="text-center">
+          <button
+            type="submit"
+            class="px-4 py-2 border border-black shadow-[4px_4px_0px_black]"
+          >
+            Register
+          </button>
+        </div>
+      </form>
+      <form action="login" method="post">
+        {%csrf_token%}
+        <h1 class="font-bold text-3xl text-center mb-6">Login</h1>
+        <div class="flex w-full gap-3 mb-4">
+          <label for="email" class="whitespace-no-wrap w-24">Email:</label>
+          <input name="email" type="email" class="border border-black" />
+        </div>
+        <div class="flex w-full gap-3 mb-4">
+          <label for="password" class="whitespace-no-wrap w-24"
+            >Password:</label
+          >
+          <input name="password" type="password" class="border border-black" />
+        </div>
+
+        <div class="text-center">
+          <button
+            type="submit"
+            class="px-4 py-2 border border-black shadow-[4px_4px_0px_black]"
+          >
+            Login
+          </button>
+        </div>
+      </form>
+    </div>
+    {%if messages%}
+        <ul class="p-10">
+          {%for message in messages%}
+          <li class="text-red-500">{{message}}</li>
+          {%endfor%}
+        </ul>
+        {%endif%}
+  </body>
+</html>
